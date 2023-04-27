@@ -12,7 +12,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v1
-      with:
-        resourceGroupName: github-action-arm-rg
-        template: ./Bicep-Templates/main.bicep
+    - name: rub Bicep
+        uses: azure/arm-deploy@v1
+        with:
+                template: ./Bicep-Templates/main.bicep
