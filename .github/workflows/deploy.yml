@@ -1,18 +1,22 @@
-on: 
-name: AzureARMSample
-
+on:
+name: Azure ARM
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+
+      # Checkout code
     - uses: actions/checkout@main
 
+      # Log into Azure
     - uses: azure/login@v1
-
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: rub Bicep
-        uses: azure/arm-deploy@v1
-        with:
-                template: ./Bicep-Templates/main.bicep
+      # Deploy Bicep file
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        scope: subscription
+        region: westus
+        template: Bicep-Templates/main.bicep
